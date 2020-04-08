@@ -1,19 +1,32 @@
 const socket = io()
-
+const $msgForm = document.querySelector('#msgForm')
+const $messageFormInput = $msgForm.querySelector('input')
+const $msgFormButton = $msgForm.querySelector('button')
 
 socket.on('message' , (welcomeMsg) =>{
     console.log(welcomeMsg)
 })
 
 
-document.querySelector('#msgForm').addEventListener('submit' ,(e) =>{
+$msgForm.addEventListener('submit' ,(e) =>{
     e.preventDefault()
+
+    //disabling form button while it is passing the msg to prevent duplicate data in transaction
+    $msgFormButton.setAttribute('disabled','disabled')
+
     const msg = e.target.elements.msg.value
     socket.emit('sendMessage',msg, (error) => {
+        //enabling form button again for next data
+        $msgFormButton.removeAttribute('disabled')
+
+        //clearing the value of input box once the message is sent
+        $messageFormInput.value = ''
+        $messageFormInput.focus()
         if(error){
             return console.log(error)
         }
         console.log('message delievered!!')
+
     })
 })
  
