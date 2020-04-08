@@ -23,8 +23,9 @@ io.on('connection' , (socket) => {
     
     socket.broadcast.emit('message','A new user had joined the chat!!')
 
-    socket.on('sendMessage' , (msg) =>{
+    socket.on('sendMessage' , (msg , callback) =>{
         io.emit('message', msg )
+        callback('Delivered!!')
     })
 
     socket.on('sendLocation' , (location) =>{

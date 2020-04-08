@@ -9,7 +9,9 @@ socket.on('message' , (welcomeMsg) =>{
 document.querySelector('#msgForm').addEventListener('submit' ,(e) =>{
     e.preventDefault()
     const msg = e.target.elements.msg.value
-    socket.emit('sendMessage',msg)
+    socket.emit('sendMessage',msg, (ack) => {
+        console.log('The message was delivered' , ack)
+    })
 })
  
 
