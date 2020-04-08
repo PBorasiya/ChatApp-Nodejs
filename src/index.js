@@ -34,9 +34,13 @@ io.on('connection' , (socket) => {
         callback()
     })
 
-    socket.on('sendLocation' , (location) =>{
+    socket.on('sendLocation' , (location , callback) =>{
         
+        if(!location){
+            return callback('Please share a valid location')
+        }
         io.emit('message', `https://google.com/maps?q=${location.latitude},${location.longitude}` )
+        callback()
     })
 
     socket.on('disconnect' , () =>{

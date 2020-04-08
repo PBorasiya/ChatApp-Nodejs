@@ -28,6 +28,12 @@ document.querySelector('#send-location').addEventListener('click', ()=>{
             latitude : position.coords.latitude,
             longitude : position.coords.longitude,
             timestamp : position.timestamp
+        }, (error) =>{
+            if(error){
+                return console.log(error)
+            }
+
+            console.log('location shared!')
         })
     })
 })
