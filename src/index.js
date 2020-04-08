@@ -17,15 +17,19 @@ app.use(express.static(publicDirectoryPath))
 
 io.on('connection' , (socket) => {
     console.log('New WebSocket Connection')
-    const welcomeMsg = 'Welcome Pranav'
+    
 
-    socket.emit('message', welcomeMsg)
-    // socket.emit('countUpdated',count)
+    socket.emit('message', 'Welcome Pranav')
+    
     // socket.on('increment' , () =>{
     //     count++
     //     //socket.emit('countUpdated', count)
     //     io.emit('countUpdated',count)
     // })
+
+    socket.on('sendMessage' , (msg) =>{
+        io.emit('message', msg )
+    })
 })
 
 server.listen(port, () =>{
