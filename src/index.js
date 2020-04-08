@@ -27,6 +27,11 @@ io.on('connection' , (socket) => {
         io.emit('message', msg )
     })
 
+    socket.on('sendLocation' , (location) =>{
+        
+        io.emit('message', `Location => latitude : ${location.latitude} , longutude : ${location.longitude}` )
+    })
+
     socket.on('disconnect' , () =>{
         io.emit('message' , 'A user has left the chat!!')
     })
