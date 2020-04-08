@@ -8,7 +8,7 @@ socket.on('message' , (welcomeMsg) =>{
 
 document.querySelector('#msgForm').addEventListener('submit' ,(e) =>{
     e.preventDefault()
-    const msg = document.querySelector('input').value
+    const msg = e.target.elements.msg.value
     socket.emit('sendMessage',msg)
 })
 
