@@ -6,9 +6,7 @@
     </head>
     <body>
         <h1>CHAT APP WELCOME PAGE</h1>
-        <div id="messages">
-
-        </div>
+        <div id="messages"></div>
         <form id="msgForm">
         <input name="msg" placeholder="message">
 
@@ -19,6 +17,12 @@
         <script id="message-template" type="text/html">
             <div>
                 <p>{{message}}</p>
+            </div>
+        </script>
+
+        <script id="locationMessage-template" type="text/html">
+            <div>
+                <p><a href="{{url}}" target="_blank">This is my current location</a></p>
             </div>
         </script>
 
