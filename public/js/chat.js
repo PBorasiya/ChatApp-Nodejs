@@ -38,7 +38,8 @@ document.querySelector('#send-location').addEventListener('click', ()=>{
     if(!navigator.geolocation){
         return alert('Geolocation is not supported by your browser')
     }
-
+    //disabled the button so we don't allow users to be able to send duplicate copies while the 1st copy is 
+    //still sending
     $locationButton.setAttribute('disabled', 'disabled')
 
     navigator.geolocation.getCurrentPosition((position)=>{
@@ -48,6 +49,7 @@ document.querySelector('#send-location').addEventListener('click', ()=>{
             timestamp : position.timestamp
         }, () =>{
             console.log('location shared!')
+            //disabled the button so we can allow users to send location once the earlier transaction is done
             $locationButton.removeAttribute('disabled')
         })
     })
