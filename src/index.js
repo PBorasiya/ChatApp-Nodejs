@@ -11,7 +11,7 @@ const publicDirectoryPath = path.join(__dirname,'../public')
 const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
-const { generateMessage } = require('./utils/messages')
+const { generateMessage, generateLocationMessage } = require('./utils/messages')
 
 
 app.use(express.static(publicDirectoryPath))
@@ -39,7 +39,7 @@ io.on('connection' , (socket) => {
         if(!location){
             return callback('Please share a valid location')
         }
-        io.emit('locationMessage', `https://google.com/maps?q=${location.latitude},${location.longitude}` )
+        io.emit('locationMessage', generateLocationMessage(`https://google.com/maps?q=${location.latitude},${location.longitude}`) )
         callback()
     })
 
