@@ -5,15 +5,26 @@
         <link rel="stylesheet" href="/css/styles.min.css">
     </head>
     <body>
-        <h1>CHAT APP WELCOME PAGE</h1>
-        <div id="messages"></div>
-        <form id="msgForm">
-        <input name="msg" placeholder="message">
+        <div class="chat">
+            <div class="chat__sidebar">
 
-        <button>send</button>
-        </form> 
-        <button id="send-location">send location</button>
+            </div>
+            <div class="chat__main">
+                
+                <div id="messages" class="chat__messages"></div>
 
+                <div class="compose">
+                    <form id="msgForm">
+                        <input name="msg" placeholder="message">
+                        <button>send</button>
+                    </form> 
+                    <button id="send-location">send location</button>
+                </div>
+                
+
+            </div>
+        </div>
+        
         <script id="message-template" type="text/html">
             <div>
                 <p>{{createdAt}} - {{message}}</p>
