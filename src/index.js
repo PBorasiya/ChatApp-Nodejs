@@ -20,9 +20,14 @@ io.on('connection' , (socket) => {
     console.log('New WebSocket Connection')
     
 
-    socket.emit('message', generateMessage('Welcome'))
-    
-    socket.broadcast.emit('message',generateMessage('A new user had joined the chat!!'))
+
+    socket.on('join' , ({username,room}) => {
+        socket.join(room)
+        
+        socket.emit('message', generateMessage(`Welcome ${username}`))
+        socket.broadcast.to(room).emit('message',generateMessage(`${username} had joined the chat!`))
+
+    })
 
     socket.on('sendMessage' , (msg , callback) =>{
         const filter = new Filter()
@@ -47,6 +52,8 @@ io.on('connection' , (socket) => {
         io.emit('message' , generateMessage('A user has left the chat!!'))
     })
 })
+
+
 
 server.listen(port, () =>{
     console.log('listening on port ' + port)
