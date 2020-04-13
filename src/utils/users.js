@@ -3,7 +3,7 @@ const users = []
 const addUser = ({ id, username, room }) => {
     //cleaning the data
     username = username.trim().toLowerCase()
-    room = roon.trim().toLowerCase()
+    room = room.trim().toLowerCase()
 
     //validate the data
     if(!username  || !room){
@@ -13,7 +13,7 @@ const addUser = ({ id, username, room }) => {
     }
 
     //check for existing user
-    const existingUser = user.find((user) => {
+    const existingUser = users.find((user) => {
         return user.room === room && user.username === username
     })
 
@@ -35,7 +35,39 @@ const addUser = ({ id, username, room }) => {
 const removeUser = ((id) => {
     const index = users.findIndex((user)=>  user.id === id)
 
-    id(index !== -1){
+    if(index !== -1){
         return users.splice(index,1)[0]
     }
 })
+
+const getUser = ((id) =>{
+    const index = users.findIndex((user) => user.id === id)
+
+    if(index !== -1){
+        return users[index]
+    }
+})
+
+addUser({
+    id : 7,
+    username : 'Pranav',
+    room :'Milpitas'
+})
+
+addUser({
+    id : 8,
+    username : 'Neel',
+    room :'Milpitas'
+})
+
+addUser({
+    id : 15,
+    username : 'Vaibhav',
+    room :'Fremont'
+})
+
+console.log(users)
+
+console.log(getUser(15))
+
+
