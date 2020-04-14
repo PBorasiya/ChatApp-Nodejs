@@ -41,11 +41,13 @@ const removeUser = ((id) => {
 })
 
 const getUser = ((id) =>{
-    const index = users.findIndex((user) => user.id === id)
+    return users.find((user) => user.id === id)
+})
 
-    if(index !== -1){
-        return users[index]
-    }
+const getUsersInRoom = ((room) => {
+    room = room.trim().toLowerCase()
+    return users.filter(user => user.room === room)
+   
 })
 
 addUser({
@@ -68,6 +70,7 @@ addUser({
 
 console.log(users)
 
-console.log(getUser(15))
+console.log(getUser(7))
+console.log(getUsersInRoom('Milpitas'))
 
 
