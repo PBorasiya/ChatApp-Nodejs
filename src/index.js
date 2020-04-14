@@ -35,21 +35,23 @@ io.on('connection' , (socket) => {
     })
 
     socket.on('sendMessage' , (msg , callback) =>{
+        const user =  getUser(socket.id)
+
         const filter = new Filter()
 
         if(filter.isProfane(msg)){
             return callback('Profanity is not allowed')
         }
-        io.emit('message', generateMessage( msg) )
+        io.to(user.room).emit('message', generateMessage( msg) )
         callback()
     })
 
     socket.on('sendLocation' , (location , callback) =>{
-        
+        const user =  getUser(socket.id)
         if(!location){
             return callback('Please share a valid location')
         }
-        io.emit('locationMessage', generateLocationMessage(`https://google.com/maps?q=${location.latitude},${location.longitude}`) )
+        io.to(user.room).emit('locationMessage', generateLocationMessage(`https://google.com/maps?q=${location.latitude},${location.longitude}`) )
         callback()
     })
 
