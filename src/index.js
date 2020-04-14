@@ -12,7 +12,7 @@ const app = express()
 const server = http.createServer(app)
 const io = socketio(server)
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
-
+const { addUser, getUser, getUsersInRoom, removeUser} = require('./utils/users')
 
 app.use(express.static(publicDirectoryPath))
 
